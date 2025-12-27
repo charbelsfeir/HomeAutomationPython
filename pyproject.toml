@@ -1,0 +1,44 @@
+[build-system]
+# Tells Python how to build your package
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "Automation"
+version = "0.1.0"
+description = "A high-performance API built with FastAPI"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Charbel Sfeir", email = "charbelroysfeir@gmail.com" }
+]
+# Core dependencies (replaces requirements.txt)
+dependencies = [
+    "fastapi[standard]>=0.115.0",
+    "sqlalchemy>=2.0.0",
+    "pydantic-settings>=2.0.0",
+	"apscheduler",
+]
+
+[project.optional-dependencies]
+# Extra dependencies for development (pip install ".[dev]")
+dev = [
+    "pytest>=8.0.0",
+    "httpx>=0.27.0",
+    "ruff>=0.3.0",
+]
+
+[tool.ruff]
+# Modern linter and formatter configuration
+line-length = 88
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app/"]
+
+[project.scripts]
+# Now you can just run `start-app` in your terminal
+start-app = "gunicorn main:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000"
