@@ -1,7 +1,8 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from app.schemas.device import Device
 
 
 class User(BaseModel):
-    devices: List[Device]
+    devices: Optional[List[Device]]
+    rooms: Optional[List[str]]

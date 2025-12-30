@@ -6,9 +6,10 @@ from typing import Optional, List
 class Device(BaseModel):
     id: str
     name: str
-    status: Optional[bool]
-    power: Optional[int]
-    current: Optional[float]
-    type: Optional[str]
-    room: Optional[str]
-    alarms: List[Alarm]
+    userEmail: str
+    status: Optional[bool] = None
+    power: Optional[int] = None
+    current: Optional[float] = None
+    type: Optional[str] = None
+    room: Optional[str] = None
+    alarms: Optional[List[Alarm]] = []
